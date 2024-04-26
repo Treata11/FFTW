@@ -38,15 +38,3 @@ let package = Package(
 // MARK: -
 
 fileprivate var platforms: [SupportedPlatform] = [.iOS(.v13), .macOS(.v12)]
-
-// A known issue for using #if os() conditions in swift packages:
-// https://github.com/apple/swift-package-manager/issues/4388
-// https://forums.swift.org/t/adding-platform-specific-dependency-to-multi-platform-swift-package/49645/10
-
-fileprivate var libType: Product.Library.LibraryType {
-    #if os(iOS)
-        return .static
-    #elseif os(macOS)
-        return .dynamic
-    #endif
-}
